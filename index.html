@@ -1,0 +1,392 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>For My Bestie 💖</title>
+
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700&family=Poppins:wght@300;400;500;600&display=swap');
+
+        :root {
+            --primary-pink: #ffafcc;
+            --secondary-pink: #ffc8dd;
+            --dark-pink: #b85c7c;
+            --text-color: #4a2c3a;
+            --glass-bg: rgba(255, 255, 255, 0.45);
+        }
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            min-height: 100vh;
+            background: linear-gradient(-45deg, #ffdde1, #ee9ca7, #cdb4db, #ffc8dd);
+            background-size: 400% 400%;
+            animation: gradientMove 15s ease infinite;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            font-family: 'Poppins', sans-serif;
+            color: var(--text-color);
+            overflow: hidden;
+        }
+
+        @keyframes gradientMove {
+            0% {
+                background-position: 0% 50%;
+            }
+
+            50% {
+                background-position: 100% 50%;
+            }
+
+            100% {
+                background-position: 0% 50%;
+            }
+        }
+
+        /* Splash Screen */
+        #splash {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(255, 255, 255, 0.9);
+            backdrop-filter: blur(20px);
+            z-index: 1000;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            transition: opacity 1s ease, visibility 1s;
+        }
+
+        #splash.hidden {
+            opacity: 0;
+            visibility: hidden;
+        }
+
+        .splash-content {
+            text-align: center;
+            animation: float 3s ease-in-out infinite;
+        }
+
+        @keyframes float {
+
+            0%,
+            100% {
+                transform: translateY(0);
+            }
+
+            50% {
+                transform: translateY(-20px);
+            }
+        }
+
+        .open-btn {
+            background: linear-gradient(135deg, var(--primary-pink), var(--secondary-pink));
+            border: none;
+            padding: 20px 45px;
+            border-radius: 50px;
+            font-size: 20px;
+            color: #fff;
+            cursor: pointer;
+            font-weight: 600;
+            box-shadow: 0 10px 25px rgba(238, 156, 167, 0.4);
+            transition: 0.3s;
+            margin-top: 30px;
+            text-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+        }
+
+        .open-btn:hover {
+            transform: scale(1.1);
+            box-shadow: 0 15px 35px rgba(238, 156, 167, 0.6);
+        }
+
+        /* Main Card */
+        .card {
+            width: 90%;
+            max-width: 420px;
+            padding: 40px;
+            border-radius: 35px;
+            background: var(--glass-bg);
+            backdrop-filter: blur(16px);
+            border: 1px solid rgba(255, 255, 255, 0.4);
+            box-shadow:
+                0 25px 50px rgba(0, 0, 0, 0.1),
+                inset 0 0 40px rgba(255, 255, 255, 0.5);
+            text-align: center;
+            position: relative;
+            z-index: 10;
+        }
+
+        img {
+            width: 150px;
+            height: 150px;
+            border-radius: 50%;
+            object-fit: cover;
+            border: 6px solid #fff;
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.15);
+            margin-bottom: 25px;
+            transition: 0.5s;
+        }
+
+        img:hover {
+            transform: rotate(5deg) scale(1.05);
+        }
+
+        h1 {
+            font-family: 'Playfair Display', serif;
+            font-size: 32px;
+            margin-bottom: 10px;
+            background: linear-gradient(45deg, #b85c7c, #ee9ca7);
+            -webkit-background-clip: text;
+            background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        #countdown {
+            margin: 15px 0 30px;
+            font-size: 16px;
+            letter-spacing: 1px;
+            color: #7a4a5e;
+            font-weight: 500;
+        }
+
+        .action-btn {
+            background: linear-gradient(135deg, var(--primary-pink), var(--secondary-pink));
+            border: none;
+            padding: 16px 35px;
+            border-radius: 40px;
+            font-size: 16px;
+            color: var(--text-color);
+            cursor: pointer;
+            font-weight: 600;
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
+            transition: 0.4s;
+        }
+
+        .action-btn:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 15px 30px rgba(0, 0, 0, 0.15);
+        }
+
+        #wish {
+            display: none;
+            margin-top: 30px;
+            font-size: 16px;
+            line-height: 1.8;
+            color: #5a3a4a;
+            animation: fadeUp 1.2s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+        }
+
+        @keyframes fadeUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .signature {
+            margin-top: 25px;
+            font-style: italic;
+            color: var(--dark-pink);
+            font-weight: 500;
+        }
+
+        .music-control {
+            position: absolute;
+            top: 20px;
+            right: 20px;
+            background: rgba(255, 255, 255, 0.6);
+            border: none;
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            cursor: pointer;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            font-size: 20px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+        }
+    </style>
+</head>
+
+<body>
+
+    <div id="splash">
+        <div class="splash-content">
+            <h1>A Special Surprise for You... ✨</h1>
+            <p>Turn up your volume!</p>
+            <button class="open-btn" onclick="startExperience()">Open Your Surprise 🎁</button>
+        </div>
+    </div>
+
+    <div class="card">
+        <button class="music-control" onclick="toggleMusic()" id="musicBtn">🎵</button>
+
+        <img src="LinaBD.jpg" alt="My Bestie">
+
+        <h1>Happy Birthday, Bestie 💕</h1>
+
+        <div id="countdown">Counting the days…</div>
+
+        <button class="action-btn" id="revealBtn" onclick="revealWish()">Tap for Your Wish 🎀</button>
+
+        <div id="wish">
+            Happy Birthday to my person 🤍
+            <br><br>
+            Thank you for every laugh and every moment you stayed when life got messy.
+            <br><br>
+            I hope this year wraps you in happiness,
+            surprises you in the best ways,
+            and reminds you how loved you truly are ✨
+            <br><br>
+            No matter what,
+            I’ll always be your biggest supporter 🌸
+            <div class="signature">
+                — Your bestie forever 💗
+            </div>
+        </div>
+    </div>
+
+    <!-- Hidden YouTube Player Container -->
+    <div id="player" style="position: absolute; top: -1000px; left: -1000px; width: 1px; height: 1px;"></div>
+
+    <!-- Confetti Library -->
+    <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.6.0/dist/confetti.browser.min.js"></script>
+
+    <script>
+        // 🎂 Birthday: 11 February 2026
+        const birthdayDate = new Date("2026-02-11T00:00:00").getTime();
+        let player;
+        let isMusicPlaying = false;
+
+        // Load YouTube IFrame API
+        const tag = document.createElement('script');
+        tag.src = "https://www.youtube.com/iframe_api";
+        const firstScriptTag = document.getElementsByTagName('script')[0];
+        firstScriptTag.parentNode.insertBefore(tag, firstScriptTag);
+
+        function onYouTubeIframeAPIReady() {
+            player = new YT.Player('player', {
+                height: '0',
+                width: '0',
+                videoId: 'pd6DgbvUqBc',
+                playerVars: {
+                    'autoplay': 0,
+                    'loop': 1,
+                    'playlist': 'pd6DgbvUqBc',
+                    'controls': 0,
+                    'showinfo': 0,
+                    'modestbranding': 1
+                },
+                events: {
+                    'onReady': onPlayerReady
+                }
+            });
+        }
+
+        function onPlayerReady(event) {
+            console.log("YouTube Player Ready");
+        }
+
+        function startExperience() {
+            document.getElementById("splash").classList.add("hidden");
+
+            if (player && player.playVideo) {
+                player.playVideo();
+                isMusicPlaying = true;
+                document.getElementById("musicBtn").innerText = "⏸️";
+            }
+
+            // Initial confetti burst
+            confetti({
+                particleCount: 150,
+                spread: 70,
+                origin: { y: 0.6 },
+                colors: ['#ffafcc', '#ffc8dd', '#cdb4db', '#ffffff']
+            });
+        }
+
+        function toggleMusic() {
+            if (!player) return;
+
+            if (isMusicPlaying) {
+                player.pauseVideo();
+                document.getElementById("musicBtn").innerText = "▶️";
+            } else {
+                player.playVideo();
+                document.getElementById("musicBtn").innerText = "⏸️";
+            }
+            isMusicPlaying = !isMusicPlaying;
+        }
+
+        function revealWish() {
+            const wish = document.getElementById("wish");
+            const btn = document.getElementById("revealBtn");
+
+            wish.style.display = "block";
+            btn.style.display = "none";
+
+            // Celebration confetti
+            const duration = 3 * 1000;
+            const end = Date.now() + duration;
+
+            (function frame() {
+                confetti({
+                    particleCount: 3,
+                    angle: 60,
+                    spread: 55,
+                    origin: { x: 0 },
+                    colors: ['#ffafcc', '#cdb4db']
+                });
+                confetti({
+                    particleCount: 3,
+                    angle: 120,
+                    spread: 55,
+                    origin: { x: 1 },
+                    colors: ['#ffc8dd', '#ee9ca7']
+                });
+
+                if (Date.now() < end) {
+                    requestAnimationFrame(frame);
+                }
+            }());
+        }
+
+        // Countdown Timer Logic
+        setInterval(() => {
+            const now = new Date().getTime();
+            const diff = birthdayDate - now;
+
+            if (diff <= 0) {
+                document.getElementById("countdown").innerHTML =
+                    "🎉 Happy Birthday, Bestie 🎉";
+                return;
+            }
+
+            const days = Math.floor(diff / (1000 * 60 * 60 * 24));
+            const hours = Math.floor((diff / (1000 * 60 * 60)) % 24);
+            const minutes = Math.floor((diff / (1000 * 60)) % 60);
+            const seconds = Math.floor((diff / 1000) % 60);
+
+            document.getElementById("countdown").innerHTML =
+                `${days}d · ${hours}h · ${minutes}m · ${seconds}s`;
+        }, 1000);
+    </script>
+</body>
+
+</html>
